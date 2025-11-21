@@ -44,6 +44,21 @@ The build output will be in the `dist` folder.
 
 ## Deployment on SquareCloud
 
+### ⚠️ ARQUIVO PRINCIPAL (MAIN FILE)
+
+**Pergunta frequente**: Qual arquivo principal selecionar no dashboard do SquareCloud?
+
+**Resposta**: O arquivo principal já está configurado no arquivo `squarecloud.app`:
+- **MAIN=dist/index.html**
+
+Quando o SquareCloud solicitar o arquivo principal:
+- Se você estiver fazendo upload da **raiz do projeto**: selecione `dist/index.html`
+- Se você estiver fazendo upload de **dentro da pasta dist**: selecione apenas `index.html`
+
+O arquivo `squarecloud.app` já contém todas as configurações necessárias. Basta incluí-lo no upload!
+
+---
+
 ### Passo a passo para fazer deploy no SquareCloud
 
 #### Pré-requisitos
@@ -133,7 +148,8 @@ Via Dashboard Web:
    - Todo o conteúdo da pasta `dist/`
    - O arquivo `squarecloud.app` (copie para dentro da pasta dist)
 4. Faça upload do arquivo ZIP
-5. Aguarde o deploy ser concluído
+5. **Quando solicitado o arquivo principal**: selecione `index.html` (já está configurado no squarecloud.app)
+6. Aguarde o deploy ser concluído
 
 Via CLI:
 ```sh
