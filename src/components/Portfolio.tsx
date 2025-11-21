@@ -1,4 +1,9 @@
-import { useState } from "react";
+import brandingImage1 from "@/assets/portfolio-branding-1.jpg";
+import socialMediaImage from "@/assets/portfolio-social-media.jpg";
+import editorialImage from "@/assets/portfolio-editorial.jpg";
+import campaignImage from "@/assets/portfolio-campaign.jpg";
+import packagingImage from "@/assets/portfolio-packaging.jpg";
+import brandingImage2 from "@/assets/portfolio-branding-2.jpg";
 
 const portfolioItems = [
   {
@@ -6,36 +11,42 @@ const portfolioItems = [
     title: "Identidade Visual Moderna",
     category: "Branding",
     color: "wine-intense",
+    image: brandingImage1,
   },
   {
     id: 2,
     title: "Social Media Estratégico",
     category: "Social Media",
     color: "orange-burnt",
+    image: socialMediaImage,
   },
   {
     id: 3,
     title: "Design Editorial",
     category: "Editorial",
     color: "wine-dark",
+    image: editorialImage,
   },
   {
     id: 4,
     title: "Campanha Visual",
     category: "Campanha",
     color: "cream",
+    image: campaignImage,
   },
   {
     id: 5,
     title: "Packaging Design",
     category: "Produto",
     color: "wine-intense",
+    image: packagingImage,
   },
   {
     id: 6,
     title: "Branding Completo",
     category: "Branding",
     color: "orange-burnt",
+    image: brandingImage2,
   },
 ];
 
@@ -59,31 +70,17 @@ const Portfolio = () => {
               className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer hover-lift fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div
-                className={`absolute inset-0 ${
-                  item.color === "wine-intense"
-                    ? "bg-[hsl(var(--wine-intense))]"
-                    : item.color === "wine-dark"
-                    ? "bg-[hsl(var(--wine-dark))]"
-                    : item.color === "orange-burnt"
-                    ? "bg-[hsl(var(--orange-burnt))]"
-                    : "bg-[hsl(var(--cream))]"
-                } transition-transform duration-500 group-hover:scale-110`}
-              ></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <img
+                src={item.image}
+                alt={item.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <p
-                  className={`text-sm font-medium mb-2 ${
-                    item.color === "cream" ? "text-wine-dark" : "text-white"
-                  }`}
-                >
+                <p className="text-sm font-medium mb-2 text-white/90">
                   {item.category}
                 </p>
-                <h3
-                  className={`text-2xl font-display font-bold ${
-                    item.color === "cream" ? "text-wine-dark" : "text-white"
-                  }`}
-                >
+                <h3 className="text-2xl font-display font-bold text-white">
                   {item.title}
                 </h3>
               </div>
