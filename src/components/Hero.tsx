@@ -26,7 +26,7 @@ const Hero = () => {
 
           <div className="relative fade-in-delay">
             <div className="aspect-square rounded-lg overflow-hidden shadow-elegant">
-              <img alt="Ariel Designer" className="w-full h-full object-cover object-[center_20%]" src="/lovable-uploads/9e414c28-54be-47a9-9bf6-3d0113a39b51.png" />
+              <img alt="Ariel Designer" className="w-full h-full object-cover object-[center_20%]" src="/uploads/9e414c28-54be-47a9-9bf6-3d0113a39b51.png" />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl"></div>
             <div className="absolute -top-6 -right-6 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>

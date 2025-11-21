@@ -1,56 +1,8 @@
-# Welcome to your Lovable project
+# Ariel Designer - Portfolio Website
 
-## Project info
+Designer portfolio website showcasing identity visual, social media, and strategic design work.
 
-**URL**: https://lovable.dev/projects/dcc08bea-30e0-478e-af5c-f85f996cf8a0
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/dcc08bea-30e0-478e-af5c-f85f996cf8a0) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Technologies Used
 
 This project is built with:
 
@@ -60,14 +12,173 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Development
 
-Simply open [Lovable](https://lovable.dev/projects/dcc08bea-30e0-478e-af5c-f85f996cf8a0) and click on Share -> Publish.
+Follow these steps to run the project locally:
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+# Step 1: Clone the repository
+git clone <YOUR_GIT_URL>
 
-Yes, you can!
+# Step 2: Navigate to the project directory
+cd ariel-s-crimson-canvas
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Step 3: Install the necessary dependencies
+npm install
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Step 4: Start the development server with auto-reloading
+npm run dev
+```
+
+The development server will start on `http://localhost:8080`.
+
+## Build
+
+To build the project for production:
+
+```sh
+npm run build
+```
+
+The build output will be in the `dist` folder.
+
+## Deployment on SquareCloud
+
+### Passo a passo para fazer deploy no SquareCloud
+
+#### Pré-requisitos
+- Conta no [SquareCloud](https://squarecloud.app/)
+- Node.js instalado localmente (apenas para deploy manual)
+
+#### Opção 1: Deploy via GitHub (Recomendado - Mais Fácil)
+
+**1. Conectar repositório ao SquareCloud**
+
+Este projeto já está configurado para deploy automático via GitHub:
+
+1. Acesse [SquareCloud Dashboard](https://squarecloud.app/dashboard)
+2. Clique em "Create Application" ou "New App"
+3. Selecione "GitHub" como método de deploy
+4. Autorize o SquareCloud a acessar seu repositório
+5. Selecione este repositório (`ariel-s-crimson-canvas`)
+6. Selecione o branch que deseja deployar (ex: `main` ou `copilot/prepare-site-for-squarecloud`)
+
+**2. Configuração automática**
+
+O SquareCloud detectará automaticamente o arquivo `squarecloud.app` que já está configurado com:
+- `BUILD=npm run build` - Comando para fazer build automaticamente
+- `START=npx serve dist -p 80` - Comando para servir o site
+- `MEMORY=512` - Memória alocada
+- Dependência `serve` já adicionada no package.json
+
+**3. Deploy automático**
+
+- O SquareCloud irá automaticamente:
+  1. Instalar as dependências (`npm install`)
+  2. Fazer o build do projeto (`npm run build`)
+  3. Iniciar o servidor (`npx serve dist -p 80`)
+- Cada push para o branch conectado fará um novo deploy automaticamente
+
+**4. Acessar o site**
+
+Seu site estará disponível em: `https://ariel-designer.squarecloud.app` (ou o subdomínio configurado)
+
+---
+
+#### Opção 2: Deploy Manual (Upload de Arquivos)
+
+**1. Preparar o projeto**
+```sh
+# Instale as dependências
+npm install
+
+# Faça o build do projeto
+npm run build
+```
+
+Isso criará a pasta `dist` com todos os arquivos compilados.
+
+**2. Preparar os arquivos para upload**
+
+O projeto já inclui o arquivo `squarecloud.app` com as configurações necessárias:
+- `DISPLAY_NAME`: Nome do aplicativo
+- `MAIN`: Arquivo principal (dist/index.html)
+- `MEMORY`: Memória alocada (512MB)
+- `BUILD`: Comando de build (para GitHub deploy)
+- `START`: Comando para servir os arquivos estáticos
+
+**3. Criar arquivo package.json na pasta dist**
+
+Antes de fazer upload, você precisa adicionar `serve` como dependência. Crie ou copie um `package.json` simplificado na pasta `dist`:
+
+```sh
+# Na raiz do projeto, execute:
+cat > dist/package.json << 'EOF'
+{
+  "name": "ariel-designer-portfolio",
+  "version": "1.0.0",
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
+EOF
+```
+
+**4. Fazer upload para SquareCloud**
+
+Via Dashboard Web:
+1. Acesse [SquareCloud Dashboard](https://squarecloud.app/dashboard)
+2. Clique em "Upload Application"
+3. Compacte os seguintes arquivos em um arquivo ZIP:
+   - Todo o conteúdo da pasta `dist/`
+   - O arquivo `squarecloud.app` (copie para dentro da pasta dist)
+4. Faça upload do arquivo ZIP
+5. Aguarde o deploy ser concluído
+
+Via CLI:
+```sh
+# Instale o CLI do SquareCloud
+npm install -g @squarecloud/cli
+
+# Faça login
+squarecloud login
+
+# Copie squarecloud.app para dist
+cp squarecloud.app dist/
+
+# Entre na pasta dist e faça o commit
+cd dist
+squarecloud commit
+```
+
+**5. Verificar o deploy**
+
+Após o upload, o SquareCloud irá:
+- Instalar as dependências (`serve`)
+- Executar o comando START: `npx serve dist -p 80`
+- Disponibilizar seu site em: `https://ariel-designer.squarecloud.app` (ou o subdomínio configurado)
+
+---
+
+#### Configurar domínio personalizado (opcional)
+
+No painel do SquareCloud, você pode configurar um domínio personalizado nas configurações da aplicação.
+
+### Solução de Problemas
+
+- **Erro de memória**: Aumente o valor de `MEMORY` no arquivo `squarecloud.app`
+- **Erro 404**: Verifique se o arquivo `dist/index.html` existe após o build
+- **Rotas não funcionam**: Para SPAs com React Router, pode ser necessário configurar rewrites no servidor
+- **Build falha**: Verifique os logs no dashboard do SquareCloud para identificar erros de build
+
+Para mais informações, visite a [documentação oficial do SquareCloud](https://docs.squarecloud.app/).
+
+## Contact Information
+
+- **Email**: ariel.silva.serra@gmail.com
+- **Phone**: +55 47 99116-4443
+- **Location**: Itapema - Santa Catarina
+
+## License
+
+© 2025 Ariel Designer. All rights reserved.

@@ -57,7 +57,7 @@ const Contact = () => {
                   <div>
                     <p className="font-medium text-primary">Email</p>
                     <p className="text-muted-foreground">
-                      contato@arieldesigner.com
+                      ariel.silva.serra@gmail.com
                     </p>
                   </div>
                 </div>
@@ -68,7 +68,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-primary">Telefone</p>
-                    <p className="text-muted-foreground">+55 (11) 98765-4321</p>
+                    <p className="text-muted-foreground">+55 47 99116-4443</p>
                   </div>
                 </div>
 
@@ -79,7 +79,7 @@ const Contact = () => {
                   <div>
                     <p className="font-medium text-primary">Localização</p>
                     <p className="text-muted-foreground">
-                      São Paulo, SP - Brasil
+                      Itapema - Santa Catarina
                     </p>
                   </div>
                 </div>
