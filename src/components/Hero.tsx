@@ -34,7 +34,7 @@ const Hero = () => {
               <img
                 src={heroImage}
                 alt="Ariel Designer"
-                className="w-full h-full object-cover object-[center_30%]"
+                className="w-full h-full object-cover object-[center_20%]"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl"></div>
