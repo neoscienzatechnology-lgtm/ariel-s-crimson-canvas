@@ -1,56 +1,8 @@
-# Welcome to your Lovable project
+# Ariel Designer - Portfolio Website
 
-## Project info
+Designer portfolio website showcasing identity visual, social media, and strategic design work.
 
-**URL**: https://lovable.dev/projects/dcc08bea-30e0-478e-af5c-f85f996cf8a0
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/dcc08bea-30e0-478e-af5c-f85f996cf8a0) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Technologies Used
 
 This project is built with:
 
@@ -60,14 +12,53 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Development
 
-Simply open [Lovable](https://lovable.dev/projects/dcc08bea-30e0-478e-af5c-f85f996cf8a0) and click on Share -> Publish.
+Follow these steps to run the project locally:
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+# Step 1: Clone the repository
+git clone <YOUR_GIT_URL>
 
-Yes, you can!
+# Step 2: Navigate to the project directory
+cd ariel-s-crimson-canvas
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Step 3: Install the necessary dependencies
+npm install
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Step 4: Start the development server with auto-reloading
+npm run dev
+```
+
+The development server will start on `http://localhost:8080`.
+
+## Build
+
+To build the project for production:
+
+```sh
+npm run build
+```
+
+The build output will be in the `dist` folder.
+
+## Deployment on SquareCloud
+
+This project is ready to be deployed on SquareCloud. Follow these steps:
+
+1. Build the project using `npm run build`
+2. Upload the `dist` folder to SquareCloud
+3. Configure your SquareCloud application to serve static files from the `dist` directory
+4. Set the start command to serve the static files (e.g., using a simple web server)
+
+For more information about deploying static sites on SquareCloud, visit the [SquareCloud documentation](https://docs.squarecloud.app/).
+
+## Contact Information
+
+- **Email**: ariel.silva.serra@gmail.com
+- **Phone**: +55 47 99116-4443
+- **Location**: Itapema - Santa Catarina
+
+## License
+
+© 2025 Ariel Designer. All rights reserved.
