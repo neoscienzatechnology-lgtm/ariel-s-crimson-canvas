@@ -48,9 +48,44 @@ The build output will be in the `dist` folder.
 
 #### Pré-requisitos
 - Conta no [SquareCloud](https://squarecloud.app/)
-- Node.js instalado localmente
+- Node.js instalado localmente (apenas para deploy manual)
 
-#### Passos para Deploy
+#### Opção 1: Deploy via GitHub (Recomendado - Mais Fácil)
+
+**1. Conectar repositório ao SquareCloud**
+
+Este projeto já está configurado para deploy automático via GitHub:
+
+1. Acesse [SquareCloud Dashboard](https://squarecloud.app/dashboard)
+2. Clique em "Create Application" ou "New App"
+3. Selecione "GitHub" como método de deploy
+4. Autorize o SquareCloud a acessar seu repositório
+5. Selecione este repositório (`ariel-s-crimson-canvas`)
+6. Selecione o branch que deseja deployar (ex: `main` ou `copilot/prepare-site-for-squarecloud`)
+
+**2. Configuração automática**
+
+O SquareCloud detectará automaticamente o arquivo `squarecloud.app` que já está configurado com:
+- `BUILD=npm run build` - Comando para fazer build automaticamente
+- `START=npx serve dist -p 80` - Comando para servir o site
+- `MEMORY=512` - Memória alocada
+- Dependência `serve` já adicionada no package.json
+
+**3. Deploy automático**
+
+- O SquareCloud irá automaticamente:
+  1. Instalar as dependências (`npm install`)
+  2. Fazer o build do projeto (`npm run build`)
+  3. Iniciar o servidor (`npx serve dist -p 80`)
+- Cada push para o branch conectado fará um novo deploy automaticamente
+
+**4. Acessar o site**
+
+Seu site estará disponível em: `https://ariel-designer.squarecloud.app` (ou o subdomínio configurado)
+
+---
+
+#### Opção 2: Deploy Manual (Upload de Arquivos)
 
 **1. Preparar o projeto**
 ```sh
@@ -69,6 +104,7 @@ O projeto já inclui o arquivo `squarecloud.app` com as configurações necessá
 - `DISPLAY_NAME`: Nome do aplicativo
 - `MAIN`: Arquivo principal (dist/index.html)
 - `MEMORY`: Memória alocada (512MB)
+- `BUILD`: Comando de build (para GitHub deploy)
 - `START`: Comando para servir os arquivos estáticos
 
 **3. Criar arquivo package.json na pasta dist**
@@ -90,7 +126,7 @@ EOF
 
 **4. Fazer upload para SquareCloud**
 
-Opção A - Via Dashboard Web:
+Via Dashboard Web:
 1. Acesse [SquareCloud Dashboard](https://squarecloud.app/dashboard)
 2. Clique em "Upload Application"
 3. Compacte os seguintes arquivos em um arquivo ZIP:
@@ -99,7 +135,7 @@ Opção A - Via Dashboard Web:
 4. Faça upload do arquivo ZIP
 5. Aguarde o deploy ser concluído
 
-Opção B - Via CLI:
+Via CLI:
 ```sh
 # Instale o CLI do SquareCloud
 npm install -g @squarecloud/cli
@@ -122,7 +158,9 @@ Após o upload, o SquareCloud irá:
 - Executar o comando START: `npx serve dist -p 80`
 - Disponibilizar seu site em: `https://ariel-designer.squarecloud.app` (ou o subdomínio configurado)
 
-**6. Configurar domínio personalizado (opcional)**
+---
+
+#### Configurar domínio personalizado (opcional)
 
 No painel do SquareCloud, você pode configurar um domínio personalizado nas configurações da aplicação.
 
@@ -131,6 +169,7 @@ No painel do SquareCloud, você pode configurar um domínio personalizado nas co
 - **Erro de memória**: Aumente o valor de `MEMORY` no arquivo `squarecloud.app`
 - **Erro 404**: Verifique se o arquivo `dist/index.html` existe após o build
 - **Rotas não funcionam**: Para SPAs com React Router, pode ser necessário configurar rewrites no servidor
+- **Build falha**: Verifique os logs no dashboard do SquareCloud para identificar erros de build
 
 Para mais informações, visite a [documentação oficial do SquareCloud](https://docs.squarecloud.app/).
 
