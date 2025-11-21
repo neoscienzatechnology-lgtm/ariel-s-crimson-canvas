@@ -67,7 +67,7 @@ Este projeto já está configurado para deploy automático via GitHub:
 
 O SquareCloud detectará automaticamente o arquivo `squarecloud.app` que já está configurado com:
 - `BUILD=npm run build` - Comando para fazer build automaticamente
-- `START=npx serve dist -p 80` - Comando para servir o site
+- `START=npx serve dist -l tcp://0.0.0.0:80 -s` - Comando para servir o site com suporte a SPA
 - `MEMORY=512` - Memória alocada
 - Dependência `serve` já adicionada no package.json
 
@@ -76,7 +76,7 @@ O SquareCloud detectará automaticamente o arquivo `squarecloud.app` que já est
 - O SquareCloud irá automaticamente:
   1. Instalar as dependências (`npm install`)
   2. Fazer o build do projeto (`npm run build`)
-  3. Iniciar o servidor (`npx serve dist -p 80`)
+  3. Iniciar o servidor (`npx serve dist -l tcp://0.0.0.0:80 -s`)
 - Cada push para o branch conectado fará um novo deploy automaticamente
 
 **4. Acessar o site**
@@ -155,7 +155,7 @@ squarecloud commit
 
 Após o upload, o SquareCloud irá:
 - Instalar as dependências (`serve`)
-- Executar o comando START: `npx serve dist -p 80`
+- Executar o comando START: `npx serve dist -l tcp://0.0.0.0:80 -s`
 - Disponibilizar seu site em: `https://ariel-designer.squarecloud.app` (ou o subdomínio configurado)
 
 ---
