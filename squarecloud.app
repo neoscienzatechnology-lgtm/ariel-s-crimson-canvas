@@ -5,4 +5,4 @@ MEMORY=512
 VERSION=recommended
 SUBDOMAIN=ariel-designer
 BUILD=npm run build
-START=npx serve dist -p 80
+START=npx serve dist -l tcp://0.0.0.0:80 -s
