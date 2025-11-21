@@ -44,6 +44,19 @@ The build output will be in the `dist` folder.
 
 ## Deployment on SquareCloud
 
+### ⚠️ ARQUIVO PRINCIPAL (MAIN FILE)
+
+**Pergunta frequente**: Qual arquivo principal selecionar no dashboard do SquareCloud?
+
+**Resposta**: O arquivo principal já está configurado no arquivo `squarecloud.app`:
+- **MAIN=server.js**
+
+O arquivo `server.js` é um servidor Node.js que serve os arquivos estáticos da pasta `dist` e gerencia o roteamento para a aplicação React (SPA).
+
+O arquivo `squarecloud.app` já contém todas as configurações necessárias. Basta incluí-lo no upload!
+
+---
+
 ### Passo a passo para fazer deploy no SquareCloud
 
 #### Pré-requisitos
@@ -66,17 +79,17 @@ Este projeto já está configurado para deploy automático via GitHub:
 **2. Configuração automática**
 
 O SquareCloud detectará automaticamente o arquivo `squarecloud.app` que já está configurado com:
+- `MAIN=server.js` - Servidor Node.js que serve os arquivos estáticos
 - `BUILD=npm run build` - Comando para fazer build automaticamente
-- `START=npx serve dist -l tcp://0.0.0.0:80 -s` - Comando para servir o site com suporte a SPA
 - `MEMORY=512` - Memória alocada
-- Dependência `serve` já adicionada no package.json
+- Dependências `serve-handler` já adicionada no package.json
 
 **3. Deploy automático**
 
 - O SquareCloud irá automaticamente:
   1. Instalar as dependências (`npm install`)
   2. Fazer o build do projeto (`npm run build`)
-  3. Iniciar o servidor (`npx serve dist -l tcp://0.0.0.0:80 -s`)
+  3. Iniciar o servidor Node.js (`node server.js`)
 - Cada push para o branch conectado fará um novo deploy automaticamente
 
 **4. Acessar o site**
@@ -102,38 +115,24 @@ Isso criará a pasta `dist` com todos os arquivos compilados.
 
 O projeto já inclui o arquivo `squarecloud.app` com as configurações necessárias:
 - `DISPLAY_NAME`: Nome do aplicativo
-- `MAIN`: Arquivo principal (dist/index.html)
+- `MAIN`: Arquivo principal (server.js)
 - `MEMORY`: Memória alocada (512MB)
-- `BUILD`: Comando de build (para GitHub deploy)
-- `START`: Comando para servir os arquivos estáticos
+- `BUILD`: Comando de build
 
-**3. Criar arquivo package.json na pasta dist**
-
-Antes de fazer upload, você precisa adicionar `serve` como dependência. Crie ou copie um `package.json` simplificado na pasta `dist`:
-
-```sh
-# Na raiz do projeto, execute:
-cat > dist/package.json << 'EOF'
-{
-  "name": "ariel-designer-portfolio",
-  "version": "1.0.0",
-  "dependencies": {
-    "serve": "^14.2.0"
-  }
-}
-EOF
-```
-
-**4. Fazer upload para SquareCloud**
+**3. Fazer upload para SquareCloud**
 
 Via Dashboard Web:
 1. Acesse [SquareCloud Dashboard](https://squarecloud.app/dashboard)
 2. Clique em "Upload Application"
-3. Compacte os seguintes arquivos em um arquivo ZIP:
-   - Todo o conteúdo da pasta `dist/`
-   - O arquivo `squarecloud.app` (copie para dentro da pasta dist)
-4. Faça upload do arquivo ZIP
-5. Aguarde o deploy ser concluído
+3. Faça o build do projeto primeiro: `npm run build`
+4. Compacte os seguintes arquivos/pastas em um arquivo ZIP:
+   - A pasta `dist/` completa
+   - O arquivo `server.js`
+   - O arquivo `package.json`
+   - O arquivo `package-lock.json`
+   - O arquivo `squarecloud.app`
+5. Faça upload do arquivo ZIP
+6. Aguarde o deploy ser concluído
 
 Via CLI:
 ```sh
@@ -143,19 +142,18 @@ npm install -g @squarecloud/cli
 # Faça login
 squarecloud login
 
-# Copie squarecloud.app para dist
-cp squarecloud.app dist/
+# Faça o build
+npm run build
 
-# Entre na pasta dist e faça o commit
-cd dist
+# Faça o commit do projeto (certifique-se de incluir dist, server.js, package.json e squarecloud.app)
 squarecloud commit
 ```
 
-**5. Verificar o deploy**
-
+**4. Verificar o deploy**
 Após o upload, o SquareCloud irá:
-- Instalar as dependências (`serve`)
-- Executar o comando START: `npx serve dist -l tcp://0.0.0.0:80 -s`
+- Instalar as dependências
+- Executar o comando BUILD: `npm run build` (se necessário)
+- Executar o servidor: `node server.js`
 - Disponibilizar seu site em: `https://ariel-designer.squarecloud.app` (ou o subdomínio configurado)
 
 ---
